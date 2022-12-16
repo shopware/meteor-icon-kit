@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "public/icons/meteor-icon-kit.scss";
+@import "../public/icons/meteor-icon-kit.scss";
 
 /* Begin vitepress overrides */
 .VPContentDoc {
