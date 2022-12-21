@@ -14,9 +14,11 @@ const icons = ref([]);
 const regular = require.context('../public/icons/regular', true, /svg$/);
 const solid = require.context('../public/icons/solid', true, /svg$/);
 
+const embedPath = `/resources/meteor-icon-kit/public`
+
 icons.value.push(...regular.keys().map(x => {
   return {
-    path: x.replace('./', '/icons/regular/'),
+    path: x.replace('./', `${embedPath}/icons/regular/`),
     name: x.substring(2, x.length - 4),
     regular: true,
     solid: false,
@@ -25,7 +27,7 @@ icons.value.push(...regular.keys().map(x => {
 
 icons.value.push(...solid.keys().map(x => {
   return {
-    path: x.replace('./', '/icons/solid/'),
+    path: x.replace('./', `${embedPath}/icons/solid/`),
     name: x.substring(2, x.length - 4),
     regular: false,
     solid: true,
