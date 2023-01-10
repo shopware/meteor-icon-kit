@@ -1,14 +1,16 @@
 #! /usr/bin/env bash
 set -e
 
+[[ -z "$1" ]] && echo "Missing working directory argument" && exit 1
+
 echo "Installing pnpm"
-pnpm i --dir /tmp/mount-all
+pnpm i --dir $1
 
 echo "Running root build"
-pnpm run --dir /tmp/mount-all build
+pnpm run --dir $1 build
 
 echo "Building figma"
-pnpm run --dir /tmp/mount-all start
+pnpm run --dir $1 start
 
 echo "Copying icons"
-cp -R /tmp/mount-all/icons /tmp/mount-all/docs/public
+cp -R "$1/icons" "$1/docs/public"
