@@ -4,10 +4,10 @@ set -e
 [[ -z "$1" ]] && echo "Missing working directory argument" && exit 1
 
 echo "Installing root npm"
-npm run --prefix $1 install
+npm --prefix $1 install
 
 echo "Installing docs npm"
-npm run --prefix $1/docs install
+npm --prefix $1/docs install
 
 echo "Running root build"
 npm run --prefix $1 build
