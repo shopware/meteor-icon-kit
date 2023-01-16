@@ -75,7 +75,7 @@ export default {
   width: 100%;
   margin: 20px auto;
   padding: 10px 45px;
-  background: white url("/icons/regular/search.svg") no-repeat 15px center;
+  background: transparent url("/icons/regular/search.svg") no-repeat 15px center;
   background-size: 15px 15px;
   font-size: 16px;
   border: none;
@@ -93,12 +93,13 @@ export default {
   width: 120px;
   height: 32px;
   font-size: 12px;
-  background-color: #FBFBFB;
 }
 
 button.active {
-  background-color: #0E1014;
-  color: #fff;
+  background: -webkit-linear-gradient(left,#017bff 15%,#01cfff,#017bff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 button#regular {
