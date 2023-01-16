@@ -3,14 +3,17 @@ set -e
 
 [[ -z "$1" ]] && echo "Missing working directory argument" && exit 1
 
-echo "Installing pnpm"
-pnpm --dir $1 i
+echo "Installing root npm"
+npm run --prefix $1 install
+
+echo "Installing docs npm"
+npm run --prefix $1/docs install
 
 echo "Running root build"
-pnpm run --dir $1 build
+npm run --prefix $1 build
 
 echo "Building figma"
-pnpm run --dir $1 start
+npm run --prefix $1 start
 
 echo "Copying icons"
 cp -R "$1/icons" "$1/docs/public"
