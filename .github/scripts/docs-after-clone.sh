@@ -4,7 +4,7 @@ set -e
 [[ -z "$1" ]] && echo "Missing working directory argument" && exit 1
 
 echo "Installing pnpm"
-pnpm i --dir $1
+pnpm --dir $1 i
 
 echo "Running root build"
 pnpm run --dir $1 build
