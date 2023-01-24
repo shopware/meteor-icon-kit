@@ -1,4 +1,4 @@
 build-end:
   copy-additional-assets:
-    - resources/meteor-icon-kit/public/icons/regular
-    - resources/meteor-icon-kit/public/icons/solid
+    - public/icons/regular
+    - public/icons/solid
