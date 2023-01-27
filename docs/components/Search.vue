@@ -75,7 +75,7 @@ export default {
   width: 100%;
   margin: 20px auto;
   padding: 10px 45px;
-  background: transparent url("/icons/regular/search.svg") no-repeat 15px center;
+  background: transparent url("/resources/meteor-icon-kit/public/icons/regular/search.svg") no-repeat 15px center;
   background-size: 15px 15px;
   font-size: 16px;
   border: none;
