@@ -1,5 +1,18 @@
 # CHANGELOG.md
 
+## 4.6.0
+
+Revelio ✨
+Added:
+- `regular/wand-magic`
+- `solid/wand-magic`
+- `regular/wand-magic-sparkles`
+- `solid/wand-magic-sparkles`
+- `regular/sparkle`
+- `solid/sparkle`
+- `regular/sparkles`
+- `solid/sparkles`
+
 ## 4.5.0
 
 Added:
