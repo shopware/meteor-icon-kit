@@ -1,25 +1,31 @@
 <template>
-    <div class="search-container">
-      <h1>Meteor icon kit</h1>
+  <SwagLanding>
+    <template #title>Meteor icon kit</template>
+    <template #description>An icon library and toolkit that follows a minimal, yet highly expressive style perfectly
+      aligned with Shopware's product language.
+    </template>
+  </SwagLanding>
 
-      <p>An icon library and toolkit that follows a minimal, yet highly expressive style perfectly aligned with Shopware's product language.</p>
+  <div class="search-container">
+    <div class="search-bar">
+      <input class="form-control" name="searchbar" type="text" @input="debounceInput" placeholder="Search icons..."/>
 
-      <div class="search-bar">
-        <input name="searchbar" type="text" @input="debounceInput" placeholder="Search icons..." />
-
-        <div class="button-group">
-          <button id="regular" :class="{ active: regular }" aria-label="Regular" @click="switchIconModeToRegular">Regular</button>
-          <button id="solid" :class="{ active: solid }" aria-label="Solid" @click="switchIconModeToSolid">Solid</button>
-        </div>
-      </div>
-
-      <p id="copy-hint">Click on any Icon to copy the full icon name to clipboard.</p>
-
-      <SearchResult :phrase="phrase" :regular="regular" :solid="solid" />
+      <button id="regular" class="btn --primary" :class="[ regular ? '' : '--bordered' ]" aria-label="Regular"
+              @click="switchIconModeToRegular">Regular
+      </button>
+      <button id="solid" class="btn --secondary" :class="[ solid ? '' : '--bordered' ]" aria-label="Solid"
+              @click="switchIconModeToSolid">Solid
+      </button>
     </div>
+
+    <p id="copy-hint">Click on any Icon to copy the full icon name to clipboard.</p>
+
+    <SearchResult :phrase="phrase" :regular="regular" :solid="solid"/>
+  </div>
 </template>
 
 <script setup>
+import SearchResult from './SearchResult.vue';
 import { ref } from 'vue'
 
 const phrase = ref('');
@@ -46,18 +52,6 @@ const switchIconModeToSolid = () => {
 }
 </script>
 
-<script>
-import SearchResult from './SearchResult.vue';
-
-export default {
-  name: 'Search',
-
-  components: {
-    'SearchResult': SearchResult,
-  },
-}
-</script>
-
 <style lang="scss">
 @import "../public/icons/meteor-icon-kit.scss";
 
@@ -80,7 +74,6 @@ export default {
   font-size: 16px;
   border: none;
   border-radius: 8px;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 8%)) drop-shadow(0 2px 1px rgba(0, 0, 0, 6%)) drop-shadow(0 1px 3px rgba(0, 0, 0, 10%));
   flex-wrap: wrap;
   gap: 8px;
 }
@@ -91,23 +84,6 @@ export default {
 
 .button-group button {
   width: 120px;
-  height: 32px;
-  font-size: 12px;
-}
-
-button.active {
-  background: -webkit-linear-gradient(left,#017bff 15%,#01cfff,#017bff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-button#regular {
-  border-radius: 4px 0 0 4px;
-}
-
-button#solid {
-  border-radius: 0 4px 4px 0;
 }
 
 p#copy-hint {

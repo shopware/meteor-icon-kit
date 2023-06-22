@@ -44,13 +44,12 @@ const id = computed(() => {
 
 .icon-display {
   display: flex;
-  background: #fff;
   width: 100%;
   height: 116px;
   border-radius: 8px;
   justify-content: center;
   align-items: center;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 8%)) drop-shadow(0 2px 1px rgba(0, 0, 0, 6%)) drop-shadow(0 1px 3px rgba(0, 0, 0, 10%));
+  box-shadow: 0 1px 1px rgb(0 0 0 / 8%), 0 2px 1px rgb(0 0 0 / 6%), 0 1px 3px rgb(0 0 0 / 10%);
 }
 
 img {

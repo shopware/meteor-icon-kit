@@ -70,9 +70,7 @@ export default {
 
 <style lang="css" scoped>
 .search-result {
-  background: #F2F2F2;
   border-radius: 8px;
-  padding: 21px 48px;
 }
 
 .icon-list {
