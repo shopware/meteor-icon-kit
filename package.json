@@ -20,7 +20,10 @@
     "debug": "ts-node src/debug.ts",
     "lint": "npm run lint:types && npm run lint:eslint",
     "lint:types": "tsc --noEmit",
-    "lint:eslint": "eslint ./src --ext .ts"
+    "lint:eslint": "eslint ./src --ext .ts",
+    "docs:link": "../developer-portal/docs-cli link --src docs --dst resources/meteor-icon-kit --symlink",
+    "docs:copy": "../developer-portal/docs-cli link --src docs --dst resources/meteor-icon-kit",
+    "docs:preview": "../developer-portal/docs-cli preview"
   },
   "files": [
     "icons"
