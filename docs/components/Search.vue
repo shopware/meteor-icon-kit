@@ -10,10 +10,10 @@
     <div class="search-bar">
       <input class="form-control" name="searchbar" type="text" @input="debounceInput" placeholder="Search icons..."/>
 
-      <button id="regular" class="btn --primary" :class="[ regular ? '' : '--bordered' ]" aria-label="Regular"
+      <button id="regular" class="btn" :class="[ regular ? '--primary' : '--secondary' ]" aria-label="Regular"
               @click="switchIconModeToRegular">Regular
       </button>
-      <button id="solid" class="btn --secondary" :class="[ solid ? '' : '--bordered' ]" aria-label="Solid"
+      <button id="solid" class="btn" :class="[ solid ? '--primary' : '--secondary' ]" aria-label="Solid"
               @click="switchIconModeToSolid">Solid
       </button>
     </div>

@@ -1,6 +1,6 @@
 <template>
 <div class="icon-container">
-  <div class="icon-display">
+  <div class="icon-display c-any-card">
     <img :id="id" :src="withBase(icon.path)" :alt="icon.name" @click="copyIconName"/>
   </div>
 
@@ -49,7 +49,7 @@ const id = computed(() => {
   border-radius: 8px;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 1px 1px rgb(0 0 0 / 8%), 0 2px 1px rgb(0 0 0 / 6%), 0 1px 3px rgb(0 0 0 / 10%);
+  //box-shadow: 0 1px 1px rgb(0 0 0 / 8%), 0 2px 1px rgb(0 0 0 / 6%), 0 1px 3px rgb(0 0 0 / 10%);
 }
 
 img {
