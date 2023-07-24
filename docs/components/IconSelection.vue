@@ -1,27 +1,28 @@
 <template>
-  <div class="IconSelection_bg" @click.prevent="$emit('deselect')"/>
-  <div class="IconSelection c-flat-card p-8" v-bind="$attrs">
+  <div class="IconSelection_bg" @click.prevent="$emit('switch', null)"/>
+  <div class="IconSelection c-flat-card p-8 relative" v-bind="$attrs">
     <div>
-      <h3>{{ icon.name }}</h3>
-      <a class="IconSelection_close" href="#" @click.prevent="$emit('deselect')">Close</a>
+      <h3 @click.prevent="copyIconName">{{ icon.name }}</h3>
+      <a class="IconSelection_close" href="#"
+         @click.prevent="$emit('switch', null)">Close</a>
 
-      <div class="IconSelection_tags" v-if="iconMeta.tags.length">
-        <span class="IconSelection_tag" v-for="tag in iconMeta.tags">{{ tag }}</span>
+      <div class="IconSelection_tags" v-if="icon.tags.length">
+        <span class="IconSelection_tag" v-for="tag in icon.tags">{{ tag }}</span>
       </div>
 
       <a :href="icon.path" class="btn --secondary" download>Download .svg</a>
     </div>
 
-    <SwagIcon :icon="icon.name" :type="iconMeta.mode" />
+    <SwagIcon :icon="icon.name" :type="icon.mode" />
 
     <div>
       <h4>Sizes</h4>
-      <p v-if="false && iconMeta.sizes.length === 1">The icon is available in one size.</p>
+      <p v-if="false && icon.sizes.length === 1">The icon is available in one size.</p>
       <div v-else class="flex gap-2">
-        <button v-for="size in iconMeta.sizes"
+        <button v-for="size in icon.sizes"
                 type="button"
-                @click.prevent="$emit('switch', {mode: iconMeta.mode, basename: iconMeta.basename, size})"
-                :class="size === iconMeta.size ? '--secondary' : '--subtle'"
+                @click.prevent="$emit('switch', {mode: icon.mode, basename: icon.basename, size})"
+                :class="size === icon.size ? '--secondary' : '--subtle'"
                 class="btn --secondary --xs">{{ size || 'default' }}
         </button>
       </div>
@@ -29,12 +30,12 @@
 
     <div>
       <h4>Styles</h4>
-      <p v-if="false && iconMeta.modes.length === 1">The icon is available in one style.</p>
+      <p v-if="false && icon.modes.length === 1">The icon is available in one style.</p>
       <div v-else class="flex gap-2">
-        <button v-for="mode in iconMeta.modes"
+        <button v-for="mode in icon.modes"
                 type="button"
-                @click.prevent="$emit('switch', {mode, basename: iconMeta.basename, size: iconMeta.size})"
-                :class="mode === iconMeta.mode ? '--secondary' : '--subtle'"
+                @click.prevent="$emit('switch', {mode, basename: icon.basename, size: icon.size})"
+                :class="mode === icon.mode ? '--secondary' : '--subtle'"
                 class="btn --secondary --xs">{{ mode }}
         </button>
       </div>
@@ -60,12 +61,12 @@
 
     <div>
       <h4>Related icons</h4>
-      <div class="SearchResult_list">
+      <div class="IconSelection_list">
         <IconDisplay
             v-for="icon in icons.slice(0, 4)"
             :key="icon"
             :icon="icon"
-            @selected="$emit('selected', icon)"/>
+            @select="$emit('switch', icon)"/>
       </div>
     </div>
 
@@ -83,7 +84,16 @@
     @apply bg-[var(--sw-c-gray-100)] text-[var(--sw-c-gray-dark-500)] text-sm px-2 py-1;
   }
 
-  @media (max-width: 960px) {
+  &_close {
+    @apply absolute right-0 top-0 mr-8 mt-8;
+  }
+
+  &_list {
+    @apply grid gap-6;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 960.5px) {
     position: fixed;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -101,15 +111,10 @@
       inset: 0;
       z-index: 100;
     }
-
-    &_close {
-      @apply absolute right-0 top-0 mr-8 mt-8;
-    }
   }
 
   @media (min-width: 960.5px) {
-    &_bg,
-    &_close {
+    &_bg {
       display: none;
     }
   }
@@ -118,8 +123,6 @@
 
 <script setup>
 import {computed} from "vue";
-// context of the developer portal
-import meta from "../public/icons/meta.json";
 import IconDisplay from "./IconDisplay.vue"
 
 const props = defineProps({
@@ -127,10 +130,17 @@ const props = defineProps({
   icons: {}
 });
 
-const iconMeta = computed(() => props.icon ? meta.find(({name, mode}) => name === props.icon.name && mode === props.icon.mode) : null);
+const exampleHTML = computed(() => props.icon ? `<SwagIcon name="${props.icon.name}" type="${props.icon.mode}" />` : null);
+const exampleVue2 = computed(() => props.icon ? `<SwagIcon name="${props.icon.name}" type="${props.icon.mode}" />` : null);
+const exampleVue3 = computed(() => props.icon ? `<SwagIcon name="${props.icon.name}" type="${props.icon.mode}" />` : null);
+const exampleReact = computed(() => props.icon ? `<SwagIcon name="${props.icon.name}" type="${props.icon.mode}" />` : null);
 
-const exampleHTML = computed(() => props.icon ? `<SwagIcon name="${iconMeta.value.name}" mode="${iconMeta.value.mode}" />` : null);
-const exampleVue2 = computed(() => props.icon ? `<SwagIcon name="${iconMeta.value.name}" mode="${iconMeta.value.mode}" />` : null);
-const exampleVue3 = computed(() => props.icon ? `<SwagIcon name="${iconMeta.value.name}" mode="${iconMeta.value.mode}" />` : null);
-const exampleReact = computed(() => props.icon ? `<SwagIcon name="${iconMeta.value.name}" mode="${iconMeta.value.mode}" />` : null);
+const copyIconName = () => {
+  const tempTextArea = document.createElement('textarea');
+  tempTextArea.value = `${props.icon.regular ? 'regular-' : 'solid-'}${props.icon.name}`;
+  document.body.appendChild(tempTextArea);
+  tempTextArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(tempTextArea);
+}
 </script>
