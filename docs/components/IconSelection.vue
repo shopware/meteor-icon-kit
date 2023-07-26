@@ -10,7 +10,7 @@
         <span class="IconSelection_tag" v-for="tag in icon.tags">{{ tag }}</span>
       </div>
 
-      <a :href="icon.path" class="btn --secondary" download>Download .svg</a>
+      <a :href="`${embedPoint}${icon.mode}/${icon.name}.svg`" class="btn --secondary" download>Download .svg</a>
     </div>
 
     <SwagIcon :icon="icon.name" :type="icon.mode" />
@@ -143,4 +143,6 @@ const copyIconName = () => {
   document.execCommand('copy');
   document.body.removeChild(tempTextArea);
 }
+
+const embedPoint = '/resources/meteor-icon-kit/public/icons/';
 </script>
