@@ -66,20 +66,22 @@ const switchSelectedIcon = (data) => {
 
   &_list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: stretch;
-    gap: 32px;
+    align-items: flex-start;
+    gap: 24px;
+    row-gap: 2rem;
     flex-wrap: wrap;
     flex-grow: 1;
   }
 
   &_sidebar {
     @media (min-width: 960.5px) {
-      flex-basis: 16rem;
+      flex-basis: 24rem;
       flex-grow: 0;
       flex-shrink: 0;
+      position: relative;
     }
   }
 }

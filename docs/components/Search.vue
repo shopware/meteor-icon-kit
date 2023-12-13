@@ -10,12 +10,18 @@
     <div class="search-bar">
       <input class="form-control" name="searchbar" type="text" @input="debounceInput" placeholder="Search icons..."/>
 
-      <button id="regular" class="btn" :class="[ mode === 'regular' ? '--primary' : '--secondary' ]" aria-label="Regular"
-              @click="mode = 'regular'">Regular
-      </button>
-      <button id="solid" class="btn" :class="[ mode === 'solid' ? '--primary' : '--secondary' ]" aria-label="Solid"
-              @click="mode = 'solid'">Solid
-      </button>
+      <div class="flex gap-4">
+        <button id="regular" class="btn --with-border" :class="[ mode === 'regular' ? '--subtle-2' : '--subtle' ]" aria-label="Regular"
+                @click="mode = 'regular'">
+          <SwagIcon icon="bell" />
+          Regular
+        </button>
+        <button id="solid" class="btn --with-border" :class="[ mode === 'solid' ? '--subtle-2' : '--subtle' ]" aria-label="Solid"
+                @click="mode = 'solid'">
+          <SwagIcon icon="bell" type="solid" />
+          Solid
+        </button>
+      </div>
     </div>
 
     <SearchResult :phrase="phrase" :mode="mode"/>
@@ -54,18 +60,25 @@ const debounceInput = (event) => {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 20px auto;
-  padding: 10px 0 10px 45px;
-  background: transparent url("/resources/meteor-icon-kit/public/icons/regular/search.svg") no-repeat 15px center;
+  margin: 48px auto;
   background-size: 15px 15px;
   font-size: 16px;
   border: none;
   border-radius: 8px;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 48px;
+
+  @media (min-width: 960.5px) {
+    .btn {
+      @apply justify-center;
+      width: 11.5rem;
+    }
+  }
 }
 
 .search-bar input {
   flex: 1;
+  background: transparent url("/resources/meteor-icon-kit/public/icons/regular/search.svg") no-repeat calc(100% - 15px) center;
+  background-size: 1rem;
 }
 </style>

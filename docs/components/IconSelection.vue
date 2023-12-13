@@ -1,21 +1,29 @@
 <template>
   <div class="IconSelection_bg" @click.prevent="$emit('switch', null)"/>
-  <div class="IconSelection c-flat-card p-8 relative" v-bind="$attrs">
-    <div>
-      <h3 @click.prevent="copyIconName">{{ icon.name }}</h3>
-      <a class="IconSelection_close" href="#"
-         @click.prevent="$emit('switch', null)">Close</a>
+  <div class="IconSelection relative" v-bind="$attrs">
+    <div class="IconSelection_sidebar-bg">
+      <!--<a class="IconSelection_close" href="#"
+         @click.prevent="$emit('switch', null)">Close</a>-->
 
-      <div class="IconSelection_tags" v-if="icon.tags.length">
-        <span class="IconSelection_tag" v-for="tag in icon.tags">{{ tag }}</span>
+      <!--<a :href="`${embedPoint}${icon.mode}/${icon.name}.svg`" class="btn --secondary" download>Download .svg</a>-->
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-4 items-center">
+          <SwagIcon class="--medium" :icon="icon.name" :type="icon.mode" />
+          <SwagIcon class="--small" :icon="icon.name" :type="icon.mode" />
+        </div>
+
+        <div class="flex gap-4 justify-center">
+          <SwagIcon class="--large" :icon="icon.name" :type="icon.mode" />
+        </div>
       </div>
-
-      <a :href="`${embedPoint}${icon.mode}/${icon.name}.svg`" class="btn --secondary" download>Download .svg</a>
     </div>
 
-    <SwagIcon :icon="icon.name" :type="icon.mode" />
+    <h1 @click.prevent="copyIconName">{{ icon.name }}</h1>
+    <div class="IconSelection_tags" v-if="icon.tags.length">
+      <span class="IconSelection_tag btn --subtle --xs --with-border" v-for="tag in icon.tags">{{ tag }}</span>
+    </div>
 
-    <div>
+    <!--<div>
       <h4>Sizes</h4>
       <p v-if="false && icon.sizes.length === 1">The icon is available in one size.</p>
       <div v-else class="flex gap-2">
@@ -39,33 +47,21 @@
                 class="btn --secondary --xs">{{ mode }}
         </button>
       </div>
+    </div>-->
+
+    <div>
+      <!--<h4>Examples</h4>-->
+      <textarea class="form-control" v-model="exampleHTML"></textarea>
     </div>
 
     <div>
-      <h4>Examples</h4>
-      <Tabs>
-        <Tab title="HTML">
-          <code v-text="exampleHTML"></code>
-        </Tab>
-        <Tab title="Vue2">
-          <code v-text="exampleVue2"></code>
-        </Tab>
-        <Tab title="Vue3">
-          <code v-text="exampleVue3"></code>
-        </Tab>
-        <Tab title="React">
-          <code v-text="exampleReact"></code>
-        </Tab>
-      </Tabs>
-    </div>
-
-    <div>
-      <h4>Related icons</h4>
+      <h2>Related icons</h2>
       <div class="IconSelection_list">
         <IconDisplay
             v-for="icon in icons.slice(0, 4)"
             :key="icon"
             :icon="icon"
+            mode="inline"
             @select="$emit('switch', icon)"/>
       </div>
     </div>
@@ -93,6 +89,22 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  &_sidebar-bg {
+    @apply p-6 bg-[var(--sw-c-gray-50)];
+  }
+
+  .SwagIcon {
+    &.--small {
+      --icon-size: 1rem;
+    }
+    &.--medium {
+      --icon-size: 1.725rem;
+    }
+    &.--large {
+      --icon-size: 8rem;
+    }
+  }
+
   @media (max-width: 960.5px) {
     position: fixed;
     left: 50%;
@@ -114,6 +126,8 @@
   }
 
   @media (min-width: 960.5px) {
+    position: sticky;
+    top: calc(var(--vp-nav-height) + 1rem);
     &_bg {
       display: none;
     }
