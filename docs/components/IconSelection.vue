@@ -1,6 +1,6 @@
 <template>
   <div class="IconSelection_bg" @click.prevent="$emit('switch', null)"/>
-  <div class="IconSelection relative" v-bind="$attrs">
+  <div class="IconSelection" v-bind="$attrs">
     <div class="IconSelection_sidebar-bg">
       <!--<a class="IconSelection_close" href="#"
          @click.prevent="$emit('switch', null)">Close</a>-->
