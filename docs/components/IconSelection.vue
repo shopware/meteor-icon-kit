@@ -91,6 +91,9 @@
 
   &_sidebar-bg {
     @apply p-6 bg-[var(--sw-c-gray-50)];
+    .dark & {
+      @apply bg-[var(--sw-c-gray-dark-700)]
+    }
   }
 
   .SwagIcon {
