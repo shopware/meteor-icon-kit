@@ -6,9 +6,6 @@ set -e
 echo "Installing root npm"
 npm --prefix $1 install
 
-echo "Installing docs npm"
-npm --prefix $1/docs install
-
 echo "Running root build"
 npm run --prefix $1 build
 
