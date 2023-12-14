@@ -4,6 +4,8 @@
 
 > An icon library and toolkit that follows a minimal, yet highly expressive style perfectly aligned with Shopware's product language
 
+You can find the Icon Explorer [here](https://shopware.design/icon-kit).
+
 ## Prerequisites
 
 This project requires `npm` or `yarn`.
