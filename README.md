@@ -4,6 +4,9 @@
 
 > An icon library and toolkit that follows a minimal, yet highly expressive style perfectly aligned with Shopware's product language
 
+## DEPRECATION WARNING
+> ⚠️ This repository is considered deprecated and will be archived in March 2024. For the new version of this tool please go to meteor our new monorepo. In there you find all Meteor related projects like the Meteor Icon Kit, Meteor Components, etc.
+
 ## Prerequisites
 
 This project requires `npm` or `yarn`.
